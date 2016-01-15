@@ -21,7 +21,7 @@ print html '<link rel="shortcut icon" href="' . $favicon . '" />' . "\n";
 print html '<link rel="stylesheet" href="./waifu.css">' . "\n";
 print html '</head>' . "\n";
 print html '<body>' . "\n";
-print html '<section id="photos">' . "\n";
+print html '<div id="photos">' . "\n";
 
 my @waifus;
 my @lsjpg = qx/ls -1 *.jpg/;
@@ -39,7 +39,7 @@ foreach (@waifus) {
 
 print "Found " . scalar(@waifus) . " waifus: " . scalar(@lsjpg) . " jpgs, " . scalar(@lspng) . " pngs, " . scalar(@lsgif) . " gifs\n";
 
-print html '</section>' . "\n";
+print html '</div>' . "\n";
 print html '</body>' . "\n";
 print html '</html>' . "\n";
 close html;
