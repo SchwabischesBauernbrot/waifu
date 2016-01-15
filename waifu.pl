@@ -1,5 +1,14 @@
+#!/usr/bin/perl
+#
+#	Waifu shrine
+#	Lists jpg, png, and gif files in a directory, builds a html page to display them
+#	https://github.com/homura/waifu
+#
 use List::Util 'shuffle';
 use strict;
+
+my $title = "Homuhomu~";	# Page title
+my $favicon = "../i/HomuraSoulGemTransformed.ico";	# Path to favicon
 
 open (html, ">", "index.html");
 
@@ -7,8 +16,8 @@ print html '<!doctype html>' . "\n";
 print html '<html>' . "\n";
 print html '<head>' . "\n";
 print html '<meta charset="UTF-8">' . "\n";
-print html '<title>Homuhomu~</title>' . "\n";
-print html '<link rel="shortcut icon" href="../i/HomuraSoulGemTransformed.ico" />' . "\n";
+print html '<title>' . $title . '</title>' . "\n";
+print html '<link rel="shortcut icon" href="' . $favicon . '" />' . "\n";
 print html '<link rel="stylesheet" href="./waifu.css">' . "\n";
 print html '</head>' . "\n";
 print html '<body>' . "\n";
