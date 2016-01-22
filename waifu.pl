@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 #
 #	Waifu shrine
-#	Lists jpg, png, and gif files in a directory, builds a html page to display them
+#	Lists jpg, png, and gif files in a directory, builds an html page to display them
 #	https://github.com/homura/waifu
 #
 use List::Util 'shuffle';
