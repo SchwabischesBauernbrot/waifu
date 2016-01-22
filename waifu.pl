@@ -24,17 +24,23 @@ print html '<body>' . "\n";
 print html '<div id="photos">' . "\n";
 
 my @waifus;
-my @lsjpg = qx/ls -1 *.jpg/;
-my @lspng = qx/ls -1 *.png/;
-my @lsgif = qx/ls -1 *.gif/;
+my @lsjpg = qx/ls -1 src\/*.jpg/;
+my @lspng = qx/ls -1 src\/*.png/;
+my @lsgif = qx/ls -1 src\/*.gif/;
+
 unshift (@waifus, @lsjpg);
 unshift (@waifus, @lspng);
 unshift (@waifus, @lsgif);
 @waifus = shuffle(@waifus);
-
 foreach (@waifus) {
 	chomp($_);
-	print html '<img src="' . $_ . '" alt="waifu">' . "\n";
+	$_ =~ s/src\///;
+	my @sha1 = qx/sha1sum src\/$_/;
+	$sha1[0] =~ m/\.(\w{3})/;
+	my $filename = substr($sha1[0], 0, 40) . "." . $1;
+	system('mv src/' . $_ . ' ' . 'src/' . $filename);
+	system('convert src/' . $filename . ' -resize 400 thumb/' . $filename);
+	print html '<a href="./src/' . $filename . '"><img src="./thumb/' . $filename . '" alt="waifu"></a>' . "\n";
 }
 
 print "Found " . scalar(@waifus) . " waifus: " . scalar(@lsjpg) . " jpgs, " . scalar(@lspng) . " pngs, " . scalar(@lsgif) . " gifs\n";
