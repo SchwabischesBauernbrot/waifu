@@ -10,8 +10,8 @@ use strict;
 my $title = "Homuhomu~";	# Page title
 my $favicon = "../i/HomuraSoulGemTransformed.ico";	# Path to favicon
 
-open (html, ">", "index.html");
 
+open (html, ">", "index.html");
 print html '<!doctype html>' . "\n";
 print html '<html>' . "\n";
 print html '<head>' . "\n";
@@ -23,6 +23,8 @@ print html '</head>' . "\n";
 print html '<body>' . "\n";
 print html '<div id="photos">' . "\n";
 
+system('mkdir thumb');	# Creates a thumb directory if it doesn't already exist, preventing errors later on.
+
 my @waifus;
 my @lsjpg = qx/ls -1 src\/*.jpg/;
 my @lspng = qx/ls -1 src\/*.png/;
@@ -31,7 +33,7 @@ my @lsgif = qx/ls -1 src\/*.gif/;
 unshift (@waifus, @lsjpg);
 unshift (@waifus, @lspng);
 unshift (@waifus, @lsgif);
-@waifus = shuffle(@waifus);
+@waifus = shuffle(@waifus);	# Comment out this line to display waifus in numeric order (0-F) by their SHA1 hash.
 foreach (@waifus) {
 	chomp($_);
 	$_ =~ s/src\///;
