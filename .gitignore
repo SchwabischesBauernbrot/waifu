@@ -2,6 +2,9 @@
 *.gif
 *.png
 index.html
-web.confic
+web.config
 .htaccess
 *.db
+s/*
+t/*
+Thumbs.db
