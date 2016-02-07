@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-#	Waifu shrine
+#	Waifu Page Generator
 #	Lists jpg, png, and gif files in a directory, builds an html page to display them
 #	https://gitgud.io/homu/waifu
 #
@@ -10,6 +10,11 @@ use strict;
 my $title = "Homura Akemi ｢暁美 ほむら｣";	# Page title
 my $favicon = "../i/HomuraSoulGemTransformed.ico";	# Path to favicon
 
+
+print "Waifu Page Generator  Copyright (C) 2016  Homura Akemi\n";
+print "This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.\n";
+print "This is free software, and you are welcome to redistribute it\n";
+print "under certain conditions; see LICENSE for details.\n\n";
 
 open (html, ">", "index.html");
 print html '<!doctype html>' . "\n";
