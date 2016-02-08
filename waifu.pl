@@ -2,7 +2,7 @@
 #
 #	Waifu Page Generator
 #	Lists jpg, png, and gif files in a directory, builds an html page to display them
-#	https://gitgud.io/homu/waifu
+#	https://github.com/homura/waifu
 #
 use List::Util 'shuffle';
 use strict;
