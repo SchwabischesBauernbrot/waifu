@@ -10,11 +10,12 @@ use strict;
 my $title = "Homura Akemi ｢暁美 ほむら｣";	# Page title
 my $favicon = "../i/HomuraSoulGemTransformed.ico";	# Path to favicon
 
-
 print "Waifu Page Generator  Copyright (C) 2016  Homura Akemi\n";
-print "This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.\n";
+print "This program comes with ABSOLUTELY NO WARRANTY.\n";
 print "This is free software, and you are welcome to redistribute it\n";
 print "under certain conditions; see LICENSE for details.\n\n";
+
+print "Run with --optipng -o[1-7] if you want to compress PNGs before hashing.\n";
 
 open (html, ">", "index.html");
 print html '<!doctype html>' . "\n";
@@ -35,6 +36,13 @@ my @lsjpg = qx/ls -1 s\/*.jpg/;
 my @lspng = qx/ls -1 s\/*.png/;
 my @lsgif = qx/ls -1 s\/*.gif/;
 
+if ($ARGV[0] =~ /\-\-optipng/) {
+	foreach (@lspng) {
+		chomp($_);
+		system('optipng ' . $ARGV[1] . ' "' . $_ . '"');
+	}
+}
+
 unshift (@waifus, @lsjpg);
 unshift (@waifus, @lspng);
 unshift (@waifus, @lsgif);
@@ -42,10 +50,10 @@ unshift (@waifus, @lsgif);
 foreach (@waifus) {
 	chomp($_);
 	$_ =~ s/s\///;
-	my @sha1 = qx/sha1sum s\/$_/;
+	my @sha1 = qx/sha1sum "s\/$_"/;
 	$sha1[0] =~ m/\.(\w{3})/;
 	my $filename = substr($sha1[0], 0, 12) . "." . $1;
-	system('mv s/' . $_ . ' ' . 's/' . $filename);
+	system('mv "s/' . $_ . '" ' . 's/' . $filename);
 	system('convert s/' . $filename . ' -resize 400 t/' . $filename);
 	print html '<a href="./s/' . $filename . '"><img src="./t/' . $filename . '" alt="waifu"></a>' . "\n";
 }
