@@ -2,15 +2,15 @@
 #
 #	Waifu Page Generator
 #	Lists jpg, png, and gif files in a directory, builds an html page to display them
-#	https://github.com/homura/waifu
+#	https://github.com/YandereSkylar/waifu
 #
 use List::Util 'shuffle';
 use strict;
 
-my $title = "Homura Akemi ｢暁美 ほむら｣";	# Page title
-my $favicon = "../i/HomuraSoulGemTransformed.ico";	# Path to favicon
+my $title = "waifu4laifu";	# Page title
+my $favicon = "../favicon.ico";	# Path to favicon
 
-print "Waifu Page Generator  Copyright (C) 2016  Homura Akemi\n";
+print "Waifu Page Generator  Copyright (C) 2016  Skylar Gasai\n";
 print "This program comes with ABSOLUTELY NO WARRANTY.\n";
 print "This is free software, and you are welcome to redistribute it\n";
 print "under certain conditions; see LICENSE for details.\n\n";
@@ -22,6 +22,7 @@ print html '<!doctype html>' . "\n";
 print html '<html>' . "\n";
 print html '<head>' . "\n";
 print html '<meta charset="UTF-8">' . "\n";
+print html '<!-- Page generated with https://github.com/YandereSkylar/waifu -->' . "\n";
 print html '<title>' . $title . '</title>' . "\n";
 print html '<link rel="shortcut icon" href="' . $favicon . '" />' . "\n";
 print html '<link rel="stylesheet" href="./waifu.css">' . "\n";
@@ -51,7 +52,7 @@ foreach (@waifus) {
 	chomp($_);
 	$_ =~ s/s\///;
 	my @sha1 = qx/sha1sum "s\/$_"/;
-	$sha1[0] =~ m/\.(\w{3})/;
+	$sha1[0] =~ m/\.(\w{3})$/;
 	my $filename = substr($sha1[0], 0, 12) . "." . $1;
 	system('mv "s/' . $_ . '" ' . 's/' . $filename);
 	system('convert s/' . $filename . ' -resize 400 t/' . $filename);
