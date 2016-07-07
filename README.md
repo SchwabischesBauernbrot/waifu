@@ -5,8 +5,8 @@ Put images in the ```/s``` directory.  Images will be renamed to the first 12 ch
 
 
 ### Optional switches:
-```--optipng=[1-7]``` to compress PNGs prior to hashing with the optipng program.
-```--page=[number]``` to specify the number of waifus per page.  If not set, all waifus will appear on one page.  If greater than the number of waifus, all will appear on one page and no navigation links will be created.
+* ```--optipng=[1-7]``` to compress PNGs prior to hashing with the optipng program.
+* ```--page=[number]``` to specify the number of waifus per page.  If not set, all waifus will appear on one page.  If greater than the number of waifus, all will appear on one page and no navigation links will be created.
 
 ### Dependencies:
 * Perl
