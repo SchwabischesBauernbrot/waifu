@@ -124,6 +124,15 @@ if ($page == 0) {
 			$i++;
 		}
 		print html '</div>' . "\n";
+		if ($p != 1) {
+			my $prevpage = $p - 1;
+			$prevpage =~ s/1/index/;
+			print html '<a href="' . $prevpage . '.html">⬅️ Prev</a>' . "\n";
+		}
+		if (@waifus) {
+			my $nextpage = $p + 1;
+			print html '<a href="' . $nextpage . '.html">Next ➡️</a>' . "\n";
+		}
 		print html '</body>' . "\n";
 		print html '</html>' . "\n";
 		close html;
