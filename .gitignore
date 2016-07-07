@@ -2,6 +2,7 @@
 *.gif
 *.png
 index.html
+*.html
 web.config
 .htaccess
 *.db
